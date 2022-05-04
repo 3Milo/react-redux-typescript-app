@@ -1,0 +1,31 @@
+.grid {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  width: 780px;
+  margin: 8px auto;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid;
+  cursor: pointer;
+}
+
+.row:nth-child(odd) {
+  background: #D0D9E2;
+}
+
+.avatar {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    width: 100%;
+  }
+}

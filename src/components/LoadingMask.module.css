@@ -1,0 +1,49 @@
+.LoadingMask {
+  position: absolute;
+  height: 100%;
+  width: 100%; 
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999;;
+  opacity: 0.4;
+}
+.LoadingMask:after {
+  content: '';
+  background-color: rgba(0,0,0,0);
+  border: 5px solid rgba(0,183,229,0.9);
+  opacity: .9;
+  border-left: 5px solid rgba(0,0,0,0);
+  border-right: 5px solid rgba(0,0,0,0);
+  border-radius: 50px;
+  box-shadow: 0 0 15px #2187e7;
+  width: 30px;
+  height: 30px;
+  -moz-animation: rotating 1s infinite linear;
+  -webkit-animation: rotating 1s infinite linear;
+  animation: rotating 1s linear infinite;
+
+  margin: -15px 0 0 -15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

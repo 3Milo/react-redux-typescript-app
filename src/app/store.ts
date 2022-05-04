@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import gridReducer from '../features/grid/gridSlice';
+import infoReducer from '../features/info/infoSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    grid: gridReducer,
+    info: infoReducer
   },
 });
 
