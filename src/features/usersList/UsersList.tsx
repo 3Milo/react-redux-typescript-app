@@ -53,13 +53,13 @@ export function UsersList() {
       </div>
       {users.map((user: UserData) => (
         <div
-          key={`user-${user['id']}`}
+          key={`user-${user.id}`}
           className={styles.row}
-          onClick={() => handleRowClick(user['login'])}
+          onClick={() => handleRowClick(user.login)}
         >
-          <img src={user['avatar_url']} className={styles.avatar} />
-          <div>{user['login']}</div>
-          <div>{user['html_url']}</div>
+          <img src={user.avatar_url} className={styles.avatar} />
+          <div>{user.login}</div>
+          <div>{user.html_url}</div>
         </div>
       ))}
     </div>

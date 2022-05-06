@@ -22,17 +22,17 @@ export function UserInfo() {
     <div className={styles.UserInfo}>
       {info && (
         <div className={styles.flexContainer}>
-          <img src={info['avatar_url']} className={styles.avatar} />
+          <img src={info.avatar_url} className={styles.avatar} />
           <div className={styles.userInfoDetails}>
-            <div><b>Name:</b> {info['name']}</div>
-            <div><b>Followers:</b> {info['followers']}</div>
-            <div><b>Following:</b> {info['following']}</div>
-            <div><b>Created at:</b> {info['created_at']}</div>
-            <div><b>Company:</b> {info['company']}</div>
-            <div><b>Email:</b> {info['email']}</div>
-            <div><b>Location:</b> {info['location']}</div>
-            <div><b>Blog:</b> {info['blog']}</div>
-            <div><b>Bio:</b> {info['bio']}</div>
+            <div><b>Name:</b> {info.name}</div>
+            <div><b>Followers:</b> {info.followers}</div>
+            <div><b>Following:</b> {info.following}</div>
+            <div><b>Created at:</b> {info.created_at}</div>
+            <div><b>Company:</b> {info.company}</div>
+            <div><b>Email:</b> {info.email}</div>
+            <div><b>Location:</b> {info.location}</div>
+            <div><b>Blog:</b> {info.blog}</div>
+            <div><b>Bio:</b> {info.bio}</div>
           </div>
         </div>
       )}
