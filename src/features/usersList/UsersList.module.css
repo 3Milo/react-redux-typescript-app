@@ -6,6 +6,23 @@
   margin: 8px auto;
 }
 
+.UsersListHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid;
+  padding: 0 32px;
+}
+
+.UsesListHeaderPageCounter {
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .row {
   display: flex;
   align-items: center;

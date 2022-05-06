@@ -30,13 +30,15 @@ export interface UserData {
 }
 
 export interface UsersListState {
-  users: UserData[];
+  users: UserData[]
   status: UsersListStatus
+  page: number
 }
 
 const initialState: UsersListState = {
   users: [],
   status: UsersListStatus.Idle,
+  page: 1
 };
 
 export const downloadUsers = createAsyncThunk(
@@ -51,7 +53,14 @@ export const downloadUsers = createAsyncThunk(
 const usersListSlice = createSlice({
   name: 'usersList',
   initialState,
-  reducers: {},
+  reducers: {
+    pageIncrement: (state) => {
+      state.page += 1
+    },
+    pageDecrement: (state) => {
+      state.page -= 1
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(downloadUsers.pending, (state) => {
@@ -67,7 +76,10 @@ const usersListSlice = createSlice({
   },
 })
 
+export const { pageIncrement, pageDecrement } = usersListSlice.actions;
+
 export const selectUsersListUsers = (state: RootState) => state.usersList.users;
 export const selectUsersListStatus = (state: RootState) => state.usersList.status;
+export const selectUsersListPage = (state: RootState) => state.usersList.page;
 
 export default usersListSlice.reducer;

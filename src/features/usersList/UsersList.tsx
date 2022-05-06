@@ -1,13 +1,23 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { downloadUsers, selectUsersListUsers, selectUsersListStatus, UsersListStatus, UserData } from './usersListSlice';
+import {
+  pageIncrement,
+  pageDecrement,
+  downloadUsers,
+  selectUsersListUsers,
+  selectUsersListStatus,
+  selectUsersListPage,
+  UsersListStatus,
+  UserData
+} from './usersListSlice';
 import { LoadingMask } from "../../components/LoadingMask";
 import styles from './UsersList.module.css';
 
 export function UsersList() {
   const users = useAppSelector(selectUsersListUsers);
   const status = useAppSelector(selectUsersListStatus);
+  const page = useAppSelector(selectUsersListPage);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -16,11 +26,31 @@ export function UsersList() {
   }
 
   useEffect(() => {
-    dispatch(downloadUsers(100));
-  }, [])
+    dispatch(downloadUsers(page));
+  }, [page])
 
   return status !== UsersListStatus.Idle ? (<LoadingMask />) : (
     <div className={styles.UsersList}>
+      <div className={styles.UsersListHeader}>
+        <h1>GitHub Users</h1>
+        <div className={styles.UsesListHeaderPageCounter}>
+          {/* TODO: define minPage */}
+          <button
+            onClick={() => dispatch(pageDecrement())}
+            disabled={page < 2}
+          >
+            {'<'}
+          </button>
+          <span>{page}</span>
+          {/* TODO: define maxPage */}
+          <button
+            onClick={() => dispatch(pageIncrement())}
+            disabled={page > 6}
+          >
+            {'>'}
+          </button>
+        </div>
+      </div>
       {users.map((user: UserData) => (
         <div
           key={`user-${user['id']}`}
