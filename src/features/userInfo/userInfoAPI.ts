@@ -1,7 +1,7 @@
-export function fetchUserInfo(login: string): Promise<any> {
-  return new Promise((resolve) =>
-    fetch(`https://api.github.com/users/${login}`)
-      .then(response => response.json())
-      .then(data => resolve(data))
-  );
+import { UserInfo } from "./userInfoSlice"
+
+export function fetchUserInfo(login: string): Promise<UserInfo> {
+  return fetch(`https://api.github.com/users/${login}`)
+    .then(response => response.json())
+    .then(data => data)
 }
