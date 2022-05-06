@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store';
-import { fetchUsers } from './gridAPI';
+import { fetchUsers } from './usersListAPI';
 
-export enum GridStatus {
+export enum UsersListStatus {
   Idle = 'idle',
   Loading = 'loading',
   Failed = 'failed',
@@ -29,18 +29,18 @@ export interface UserData {
   url: string,
 }
 
-export interface GridState {
+export interface UsersListState {
   users: UserData[];
-  status: GridStatus
+  status: UsersListStatus
 }
 
-const initialState: GridState = {
+const initialState: UsersListState = {
   users: [],
-  status: GridStatus.Idle,
+  status: UsersListStatus.Idle,
 };
 
 export const downloadUsers = createAsyncThunk(
-  'grid/fetchUsers',
+  'usersList/fetchUsers',
   async (amount: number) => {
     const response = await fetchUsers(amount);
     // The returned value becomes the `fulfilled` action payload
@@ -48,29 +48,29 @@ export const downloadUsers = createAsyncThunk(
   }
 );
 
-const gridSlice = createSlice({
-  name: 'grid',
+const usersListSlice = createSlice({
+  name: 'usersList',
   initialState: {
     users: [],
-    status: GridStatus.Idle
+    status: UsersListStatus.Idle
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(downloadUsers.pending, (state) => {
-        state.status = GridStatus.Loading;
+        state.status = UsersListStatus.Loading;
       })
       .addCase(downloadUsers.fulfilled, (state, action) => {
-        state.status = GridStatus.Idle;
+        state.status = UsersListStatus.Idle;
         state.users = action.payload;
       })
       .addCase(downloadUsers.rejected, (state) => {
-        state.status = GridStatus.Failed;
+        state.status = UsersListStatus.Failed;
       });
   },
 })
 
-export const selectGridUsers = (state: RootState) => state.grid.users;
-export const selectGridStatus = (state: RootState) => state.grid.status;
+export const selectUsersListUsers = (state: RootState) => state.usersList.users;
+export const selectUsersListStatus = (state: RootState) => state.usersList.status;
 
-export default gridSlice.reducer;
+export default usersListSlice.reducer;

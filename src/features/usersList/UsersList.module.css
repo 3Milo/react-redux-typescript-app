@@ -1,4 +1,4 @@
-.grid {
+.UsersList {
   border-top: 1px solid;
   border-left: 1px solid;
   border-right: 1px solid;
@@ -25,7 +25,7 @@
 }
 
 @media (max-width: 800px) {
-  .grid {
+  .UsersList {
     width: 100%;
   }
 }

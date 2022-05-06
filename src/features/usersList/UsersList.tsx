@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { downloadUsers, selectGridUsers, selectGridStatus, GridStatus } from './gridSlice';
+import { downloadUsers, selectUsersListUsers, selectUsersListStatus, UsersListStatus, UserData } from './usersListSlice';
 import { LoadingMask } from "../../components/LoadingMask";
-import styles from './Grid.module.css';
+import styles from './UsersList.module.css';
 
-export function Grid() {
-  const users = useAppSelector(selectGridUsers);
-  const status = useAppSelector(selectGridStatus);
+export function UsersList() {
+  const users = useAppSelector(selectUsersListUsers);
+  const status = useAppSelector(selectUsersListStatus);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -19,9 +19,9 @@ export function Grid() {
     dispatch(downloadUsers(100));
   }, [])
 
-  return status !== GridStatus.Idle ? (<LoadingMask />) : (
-    <div className={styles.grid}>
-      {users.map(user => (
+  return status !== UsersListStatus.Idle ? (<LoadingMask />) : (
+    <div className={styles.UsersList}>
+      {users.map((user: UserData) => (
         <div
           key={`user-${user['id']}`}
           className={styles.row}

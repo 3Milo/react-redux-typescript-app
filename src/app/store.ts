@@ -1,10 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import gridReducer from '../features/grid/gridSlice';
+import usersListReducer from '../features/usersList/usersListSlice';
 import infoReducer from '../features/info/infoSlice';
 
 export const store = configureStore({
   reducer: {
-    grid: gridReducer,
+    usersList: usersListReducer,
     info: infoReducer
   },
 });
