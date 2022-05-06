@@ -32,7 +32,7 @@ export function UsersList() {
   return status !== UsersListStatus.Idle ? (<LoadingMask />) : (
     <div className={styles.UsersList}>
       <div className={styles.UsersListHeader}>
-        <h1>GitHub Users</h1>
+        <h1>Users</h1>
         <div className={styles.UsesListHeaderPageCounter}>
           {/* TODO: define minPage */}
           <button
