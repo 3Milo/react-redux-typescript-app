@@ -50,10 +50,7 @@ export const downloadUsers = createAsyncThunk(
 
 const usersListSlice = createSlice({
   name: 'usersList',
-  initialState: {
-    users: [],
-    status: UsersListStatus.Idle
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
