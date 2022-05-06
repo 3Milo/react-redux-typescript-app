@@ -1,5 +1,5 @@
 import { UsersList } from './features/usersList/UsersList';
-import { Info } from './features/info/Info';
+import { UserInfo } from './features/userInfo/UserInfo';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<UsersList />}/>
-        <Route path="/:username" element={<Info />}/>
+        <Route path="/:username" element={<UserInfo />}/>
       </Routes>
     </div>
   );

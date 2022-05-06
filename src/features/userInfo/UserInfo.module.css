@@ -1,4 +1,4 @@
-.Info {
+.UserInfo {
   text-align: center;
 }
 
@@ -18,11 +18,11 @@
   max-height: 300px;
 }
 
-.infoData {
+.userInfoDetails {
   text-align: left;
 }
 
-.infoData div {
+.userInfoDetails div {
   margin-bottom: 8px;
 }
 

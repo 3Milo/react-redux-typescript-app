@@ -1,26 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectInfoData, selectInfoStatus, InfoStatus, downloadInfo } from "./infoSlice";
+import { selectUserInfoData, selectUserInfoStatus, UserInfoStatus, downloadInfo } from "./userInfoSlice";
 import { LoadingMask } from "../../components/LoadingMask";
-import styles from './Info.module.css';
+import styles from './UserInfo.module.css';
 
-export interface UserInfo {
-  avatar_url: string,
-  name: string,
-  followers: number,
-  following: number,
-  created_at: string,
-  company: string,
-  email: string,
-  location: string,
-  blog: string,
-  bio: string
-}
-
-export function Info() {
-  const info = useAppSelector(selectInfoData);
-  const status = useAppSelector(selectInfoStatus);
+export function UserInfo() {
+  const info = useAppSelector(selectUserInfoData);
+  const status = useAppSelector(selectUserInfoStatus);
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
 
@@ -31,12 +18,12 @@ export function Info() {
     dispatch(downloadInfo(login));
   }, [])
 
-  return status !== InfoStatus.Idle ? (<LoadingMask />) : (
-    <div className={styles.Info}>
+  return status !== UserInfoStatus.Idle ? (<LoadingMask />) : (
+    <div className={styles.UserInfo}>
       {info && (
         <div className={styles.flexContainer}>
           <img src={info['avatar_url']} className={styles.avatar} />
-          <div className={styles.infoData}>
+          <div className={styles.userInfoDetails}>
             <div><b>Name:</b> {info['name']}</div>
             <div><b>Followers:</b> {info['followers']}</div>
             <div><b>Following:</b> {info['following']}</div>

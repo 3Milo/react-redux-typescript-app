@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { fetchInfo } from './infoAPI';
+import { fetchUserInfo } from './userInfoAPI';
 
-export enum InfoStatus {
+export enum UserInfoStatus {
   Idle = 'idle',
   Loading = 'loading',
   Failed = 'failed',
 }
 
-export interface Info {
+export interface UserInfo {
   avatar_url: string,
   name: string,
   followers: number,
@@ -22,44 +22,44 @@ export interface Info {
 }
 
 export interface InfoState {
-  data: Info;
-  status: InfoStatus
+  data: UserInfo;
+  status: UserInfoStatus
 }
 
 const initialState: InfoState = {
-  data: {} as Info,
-  status: InfoStatus.Idle
+  data: {} as UserInfo,
+  status: UserInfoStatus.Idle
 };
 
 export const downloadInfo = createAsyncThunk(
-  'user/fetchInfo',
+  'userInfo/fetchInfo',
   async (login: string) => {
-    const response = await fetchInfo(login);
+    const response = await fetchUserInfo(login);
     // The returned value becomes the `fulfilled` action payload
     return response;
   }
 );
 
 const infoSlice = createSlice({
-  name: 'info',
+  name: 'userInfo',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(downloadInfo.pending, (state) => {
-        state.status = InfoStatus.Loading;
+        state.status = UserInfoStatus.Loading;
       })
       .addCase(downloadInfo.fulfilled, (state, action) => {
-        state.status = InfoStatus.Idle;
+        state.status = UserInfoStatus.Idle;
         state.data = action.payload;
       })
       .addCase(downloadInfo.rejected, (state) => {
-        state.status = InfoStatus.Failed;
+        state.status = UserInfoStatus.Failed;
       });
   },
 })
 
-export const selectInfoData = (state: RootState): Info => state.info.data;
-export const selectInfoStatus = (state: RootState): InfoStatus => state.info.status;
+export const selectUserInfoData = (state: RootState): UserInfo => state.userInfo.data;
+export const selectUserInfoStatus = (state: RootState): UserInfoStatus => state.userInfo.status;
 
 export default infoSlice.reducer;
