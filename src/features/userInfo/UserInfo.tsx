@@ -5,18 +5,18 @@ import { selectUserInfoData, selectUserInfoStatus, UserInfoStatus, downloadInfo 
 import { LoadingMask } from "../../components/LoadingMask";
 import styles from './UserInfo.module.css';
 
-export function UserInfo() {
+export const UserInfo = () => {
   const info = useAppSelector(selectUserInfoData);
   const status = useAppSelector(selectUserInfoStatus);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handleBackButton = () => navigate('/');
 
   useEffect(() => {
-    const login = window.location.pathname.slice(1)
+    const login = window.location.pathname.slice(1);
     dispatch(downloadInfo(login));
-  }, [])
+  }, []);
 
   return status !== UserInfoStatus.Idle ? (<LoadingMask />) : (
     <div className={styles.UserInfo}>

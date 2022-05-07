@@ -14,7 +14,7 @@ import {
 import { LoadingMask } from "../../components/LoadingMask";
 import styles from './UsersList.module.css';
 
-export function UsersList() {
+export const UsersList = () => {
   const users = useAppSelector(selectUsersListUsers);
   const status = useAppSelector(selectUsersListStatus);
   const page = useAppSelector(selectUsersListPage);
