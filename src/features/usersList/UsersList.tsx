@@ -27,7 +27,7 @@ export const UsersList = () => {
 
   useEffect(() => {
     dispatch(downloadUsers(page));
-  }, [page])
+  }, [page, dispatch])
 
   return status !== UsersListStatus.Idle ? (<LoadingMask />) : (
     <div className={styles.UsersList}>
@@ -57,7 +57,7 @@ export const UsersList = () => {
           className={styles.row}
           onClick={() => handleRowClick(user.login)}
         >
-          <img src={user.avatar_url} className={styles.avatar} />
+          <img src={user.avatar_url} className={styles.avatar} alt="avatar"/>
           <div>{user.login}</div>
           <div>{user.html_url}</div>
         </div>
